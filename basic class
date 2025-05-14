@@ -1,0 +1,63 @@
+
+/**
+ * 1. BASIC CLASS STRUCTURE
+ * @author (Sakshi)
+ * @version (14/05/2025)
+ */
+
+/*
+ * A class is a blueprint for creating objects. It defines:
+ * - Fields (attributes/properties)
+ * - Methods (functions/behaviors)
+ * - Constructors (special methods to initialize objects)
+ */
+
+// BasicClass.java - Save this in a file called BasicClass.java
+public class BasicClass {
+    // Class fields (attributes)
+    private String name;
+    private int age;
+    
+    // Constructor - used when creating new objects
+    public BasicClass(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Methods - define behavior
+    public void sayHello() {
+        System.out.println("Hello, my name is " + name + " and I am " + age + " years old.");
+    }
+    
+    // Getters and Setters - control access to private fields
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    // Main method - entry point of the program
+    public static void main(String[] args) {
+        // Creating objects (instances) of BasicClass
+        BasicClass person1 = new BasicClass("John", 25);
+        BasicClass person2 = new BasicClass("Sarah", 30);
+        
+        // Calling methods on the objects
+        person1.sayHello();
+        person2.sayHello();
+        
+        // Using getters and setters
+        person1.setAge(27);
+        System.out.println(person1.getName() + " is now " + person1.getAge() + " years old.");
+    }
+}
