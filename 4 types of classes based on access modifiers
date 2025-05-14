@@ -1,0 +1,136 @@
+// 1. PUBLIC CLASS
+// File: PublicClass.java
+// Accessible from anywhere
+public class PublicClass {
+    public void display() {
+        System.out.println("This is a public class");
+    }
+}
+
+// 2. DEFAULT CLASS (NO MODIFIER)
+// File: DefaultClass.java
+// Only accessible within the same package
+class DefaultClass {
+    void display() {
+        System.out.println("This is a default class");
+    }
+}
+
+// 3. OUTER CLASS WITH INNER CLASSES OF DIFFERENT ACCESS TYPES
+// File: OuterClass.java
+public class OuterClass {
+    // Public inner class - accessible from outside OuterClass
+    public class PublicInnerClass {
+        public void display() {
+            System.out.println("This is a public inner class");
+        }
+    }
+    
+    // Private inner class - only accessible within OuterClass
+    private class PrivateInnerClass {
+        public void display() {
+            System.out.println("This is a private inner class");
+        }
+    }
+    
+    // Protected inner class - accessible within package and by subclasses
+    protected class ProtectedInnerClass {
+        public void display() {
+            System.out.println("This is a protected inner class");
+        }
+    }
+    
+    // Default inner class - only accessible within the package
+    class DefaultInnerClass {
+        public void display() {
+            System.out.println("This is a default inner class");
+        }
+    }
+    
+    // Method to demonstrate accessing inner classes
+    public void accessInnerClasses() {
+        PublicInnerClass publicInner = new PublicInnerClass();
+        publicInner.display();
+        
+        PrivateInnerClass privateInner = new PrivateInnerClass();
+        privateInner.display();
+        
+        ProtectedInnerClass protectedInner = new ProtectedInnerClass();
+        protectedInner.display();
+        
+        DefaultInnerClass defaultInner = new DefaultInnerClass();
+        defaultInner.display();
+    }
+}
+
+// 4. USAGE EXAMPLES
+// File: ClassAccessDemo.java
+public class ClassAccessDemo {
+    public static void main(String[] args) {
+        // Accessing public class
+        PublicClass publicObj = new PublicClass();
+        publicObj.display();
+        
+        // Accessing default class from same package
+        DefaultClass defaultObj = new DefaultClass();
+        defaultObj.display();
+        
+        // Creating outer class instance
+        OuterClass outer = new OuterClass();
+        
+        // Accessing public inner class from outside
+        OuterClass.PublicInnerClass publicInner = outer.new PublicInnerClass();
+        publicInner.display();
+        
+        // Can't access private inner class from outside:
+        // OuterClass.PrivateInnerClass privateInner = outer.new PrivateInnerClass(); // Compile error!
+        
+        // Protected inner class - accessible in same package
+        OuterClass.ProtectedInnerClass protectedInner = outer.new ProtectedInnerClass();
+        protectedInner.display();
+        
+        // Default inner class - accessible in same package
+        OuterClass.DefaultInnerClass defaultInner = outer.new DefaultInnerClass();
+        defaultInner.display();
+        
+        // Using the helper method to access all inner classes
+        outer.accessInnerClasses();
+    }
+}
+
+// 5. SUBCLASS DEMONSTRATION
+// File: SubClass.java
+public class SubClass extends OuterClass {
+    public void accessParentInnerClasses() {
+        // Can access protected inner class from parent
+        ProtectedInnerClass protectedInner = new ProtectedInnerClass();
+        protectedInner.display();
+        
+        // Can access public inner class from parent
+        PublicInnerClass publicInner = new PublicInnerClass();
+        publicInner.display();
+        
+        // Can access default inner class if in same package
+        DefaultInnerClass defaultInner = new DefaultInnerClass();
+        defaultInner.display();
+        
+        // Cannot access private inner class from parent
+        // PrivateInnerClass privateInner = new PrivateInnerClass(); // Compile error!
+    }
+}
+
+/*
+ * ADDITIONAL NOTES:
+ * 
+ * 1. A single Java file can have only one public class, and the file name must match it.
+ * 
+ * 2. Default access is sometimes called "package-private" access.
+ * 
+ * 3. To demonstrate classes with different access in different packages:
+ *    - Create a package structure
+ *    - Place classes in different packages
+ *    - Try to access them across packages
+ * 
+ * 4. Inner classes can have all four access modifiers, but top-level classes
+ *    can only be public or default.
+ */
