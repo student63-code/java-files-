@@ -1,0 +1,185 @@
+import java.util.Scanner;
+
+/**
+ * UserInputExample - A simple program demonstrating user input in Java
+ * This program is designed to run in BlueJ
+ */
+public class UserInputExample
+{
+    // Instance variables
+    private Scanner scanner;
+    
+    /**
+     * Constructor for objects of class UserInputExample
+     */
+    public UserInputExample()
+    {
+        // Initialize scanner to read from standard input
+        scanner = new Scanner(System.in);
+    }
+    
+    /**
+     * Collect basic information from user and display personalized output
+     */
+    public void collectUserInfo()
+    {
+        // Prompt for and read the user's name
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        
+        // Prompt for and read the user's age
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+        
+        // Prompt for and read the user's favorite color
+        System.out.print("Enter your favorite color: ");
+        String favoriteColor = scanner.nextLine();
+        
+        // Display personalized output
+        System.out.println("\n----- User Information -----");
+        System.out.println("Hello, " + name + "!");
+        System.out.println("You are " + age + " years old.");
+        System.out.println("Your favorite color is " + favoriteColor + ".");
+        
+        // Calculate and display the year the user was born
+        int currentYear = 2025; // You can update this or make it dynamic
+        int birthYear = currentYear - age;
+        System.out.println("You were born around the year " + birthYear + ".");
+        
+        // Add a personalized message based on age
+        if (age < 18) {
+            System.out.println("You are under 18. Enjoy your youth!");
+        } else if (age >= 18 && age < 65) {
+            System.out.println("You are an adult. Hope you're enjoying life!");
+        } else {
+            System.out.println("You have lots of wisdom and experience!");
+        }
+        
+        // Add a comment about their favorite color
+        switch(favoriteColor.toLowerCase()) {
+            case "blue":
+                System.out.println("Blue is calming and represents the sky and ocean.");
+                break;
+            case "red":
+                System.out.println("Red is bold and energetic!");
+                break;
+            case "green":
+                System.out.println("Green represents nature and renewal.");
+                break;
+            case "yellow":
+                System.out.println("Yellow is cheerful and bright like sunshine!");
+                break;
+            default:
+                System.out.println(favoriteColor + " is a great color choice!");
+        }
+    }
+    
+    /**
+     * Simple calculator function to demonstrate numeric input
+     */
+    public void runCalculator()
+    {
+        System.out.println("\n----- Simple Calculator -----");
+        
+        // Prompt for and read the first number
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+        
+        // Prompt for and read the second number
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+        scanner.nextLine(); // Consume the newline character
+        
+        // Prompt for and read the operation
+        System.out.print("Enter operation (+, -, *, /): ");
+        String operation = scanner.nextLine();
+        
+        // Perform calculation based on the operation
+        double result = 0.0;
+        boolean validOperation = true;
+        
+        switch(operation) {
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                if (num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                    validOperation = false;
+                }
+                break;
+            default:
+                System.out.println("Error: Invalid operation.");
+                validOperation = false;
+        }
+        
+        // Display the result if the operation was valid
+        if (validOperation) {
+            System.out.println(num1 + " " + operation + " " + num2 + " = " + result);
+        }
+    }
+    
+    /**
+     * Method to close the scanner when done
+     */
+    public void closeScanner()
+    {
+        scanner.close();
+        System.out.println("\nThank you for using the program!");
+    }
+    
+    /**
+     * Main method to run the program
+     */
+    public static void main(String[] args)
+    {
+        UserInputExample program = new UserInputExample();
+        program.collectUserInfo();
+        program.runCalculator();
+        program.closeScanner();
+    }
+}
+
+/*
+ * HOW TO RUN THIS PROGRAM IN BLUEJ:
+ * 
+ * 1. Open BlueJ
+ * 
+ * 2. Create a new project:
+ *    - Click Project > New Project
+ *    - Name the project and select a location
+ *    - Click Create
+ * 
+ * 3. Create a new class:
+ *    - Click New Class button
+ *    - Enter "UserInputExample" as the class name
+ *    - Select "Class" as the type
+ *    - Click OK
+ * 
+ * 4. Replace the generated code with this code:
+ *    - Double-click on the UserInputExample class icon
+ *    - Delete all the code in the editor
+ *    - Copy and paste this entire code into the editor
+ *    - Save the file (Ctrl+S)
+ * 
+ * 5. Run the program:
+ *    - Compile the class (Ctrl+K or click Compile)
+ *    - Right-click on the UserInputExample class icon
+ *    - Select "void main(String[] args)"
+ *    - Click OK
+ * 
+ * 6. You can also run individual methods:
+ *    - Right-click on the UserInputExample class icon
+ *    - Click "new UserInputExample()" to create an object
+ *    - Right-click on the object (red box)
+ *    - Select "void collectUserInfo()" or "void runCalculator()"
+ */
